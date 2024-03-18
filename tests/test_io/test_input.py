@@ -33,7 +33,7 @@ def test_read_from_existing_file_pandas():
         "key2": ["value21", "value22", "value23"]
     })
     df.to_csv("test_for_reading_pandas", index=False)
-    assert df.to_string(index=False) == read_from_file_pandas("test_for_reading_pandas")
+    assert df.equals(read_from_file_pandas("test_for_reading_pandas"))
     os.remove("test_for_reading_pandas")
 
 

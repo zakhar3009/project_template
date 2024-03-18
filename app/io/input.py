@@ -45,7 +45,7 @@ def read_from_file_pandas(file_path):
 
     Raises:
         FileNotFoundError: If the file specified by file_path does not exist.
-        EmptyDataError: If the file is empty
+        EmptyDataError:If the file specified by file_path is empty.
     """
     try:
         df = pd.read_csv(file_path)
