@@ -11,7 +11,7 @@ def output_in_terminal(text):
     print(text)
 
 
-def output_to_file(file_path, text):
+def output_to_file_standard(file_path, text):
     """
     This function write text to the file.
 
@@ -30,3 +30,23 @@ def output_to_file(file_path, text):
             file.write(text)
     except FileNotFoundError:
         raise FileNotFoundError("The file doesn't exist")
+
+
+def output_to_file_pandas(file_path, df):
+    """
+    This function write text to the file.
+
+    Args:
+        file_path (str): The path to the file to write.
+        df (pandas.DataFrame): The text to write
+
+    Returns:
+        None
+
+    Raises:
+        AttributeError: If the df argument is not a pandas DataFrame.
+    """
+    try:
+        df.to_csv(file_path, index=False)
+    except AttributeError:
+        raise AttributeError("The df argument must be a pandas DataFrame")

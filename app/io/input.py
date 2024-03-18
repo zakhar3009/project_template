@@ -41,11 +41,16 @@ def read_from_file_pandas(file_path):
         file_path (str): The path to the file to be read.
 
     Returns:
-        str: The content of the file as a string.
+        pandas.DataFrame: The content of the file as a data frame.
 
     Raises:
         FileNotFoundError: If the file specified by file_path does not exist.
+        EmptyDataError: If the file is empty
     """
-    df = pd.read_csv(file_path)
-    result = df.to_string(index=False)
-    return result
+    try:
+        df = pd.read_csv(file_path)
+        return df
+    except FileNotFoundError:
+        raise FileNotFoundError("The file doesn't exist")
+    except pd.errors.EmptyDataError:
+        raise pd.errors.EmptyDataError("The file is empty")
